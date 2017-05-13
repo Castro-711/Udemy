@@ -1,0 +1,13 @@
+// Multi-project build
+
+// What to do to make a Multi-project build:
+
+// Add top level file called settings.gradle
+// 		- List all of the projects in the build
+
+// Add top level build.gradle
+// 		- define proect wide  build functionality
+
+apply plugin: 'java'
+
+version = '1.0.SNAPSHOT'

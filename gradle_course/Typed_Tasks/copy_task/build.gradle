@@ -1,0 +1,56 @@
+// What built-in Task Types are there
+
+// https://docs.gradle.org/current/dsl/
+// that lists all of the available Typed Tasks
+
+// The copy task
+// task <name> <(type: name)>
+task copyImages (type: Copy){
+	// because we are using a typed task
+	// most of the implementation is done already for us
+
+	// we can also use exlcude keyword
+	exclude 'IMG_one.png'
+	from 'src'  
+	into 'dest'
+}
+
+// these can get quite complex
+// we can extract some of the configuration from the task itself
+// gralde supports copySpec
+def contentSpec = copySpec{
+	// can add multiple comma separated parameters
+	exclude 'IMG_one.png', 'IMG_two.png'
+	from 'src'
+}
+
+// can use an iterator 
+// contentSpec with iterator
+def contentSpec2 = copySpec{
+	// almost anywhere we can use groovy code
+	// to manipulate the data as we wish
+	exclude {it.file.name.startsWith('IMG')}
+	from 'src'
+}
+
+task copyImages2 (type: Copy){
+	with contentSpec2
+	into 'dest'
+}
+
+
+// we can also expand test within a copy task
+// this will create a directory config if not already exists
+// it will take the web.xml fil and copy into config
+// in the process changing where it finds resourceRefName 
+// to jdbc/JacketDB
+task copyConfig (type: Copy){
+	include 'web.xml'
+	from 'src'
+	into 'config'
+	expand(
+		[resourceRefName: 'jdbc/JacketDB']
+	)
+}
+
+

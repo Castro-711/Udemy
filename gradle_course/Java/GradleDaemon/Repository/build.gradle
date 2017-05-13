@@ -1,0 +1,28 @@
+// to add a plugin
+apply plugin: 'java'
+
+// Adds many tasks into our project
+// build
+// clean 
+// javadoc
+
+// Supports a standard layout
+// src/main/java
+// src/main/resources
+// src/test/java/
+// src/test/resources
+
+// if you wish you can use your own conventions
+
+// we can apply versions within gradle
+// this will affect the jar name and other stuff etc
+version = '1.0.SNAPSHOT'
+
+// each time we run build, gradle must spin up a new JVM and this takes time
+// using:
+// 		gradle --daemon clean 
+// will use the previous JVM
+// it is recommended practice to do this
+
+// you can also do this by adding a gradle.properties file to 
+// the .gradle directory in my home directory. 

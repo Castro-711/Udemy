@@ -1,0 +1,18 @@
+// Gradle Cache
+
+// Modules are cached
+// 		- file based
+// 		= meta dataand file stored spearately
+// 		- repository caches are independent
+// 		- uses sha1 names before the jar files
+			// hence the weird dir names
+
+// Dependencies can be refreshed
+// 		- can pass --refresh-dependencies flag
+// 		- will check if it needs to re-downlaod
+
+// Can safely delete cached files
+
+
+// cache path
+// 		- ~/.gradle

@@ -1,0 +1,18 @@
+// this is the multi-project build.gradle file
+
+// need to wrap it in a closure called allprojects
+allprojects{
+	apply plugin: 'java'
+}
+
+project(':Repository')
+
+// JacketService depends on Repository 
+// there for it needs to be added like this
+// to ensure it builds
+// by making Repository compile first
+project(':JacketService'){
+	dependencies{
+		compile project(':Repository')
+	}
+}

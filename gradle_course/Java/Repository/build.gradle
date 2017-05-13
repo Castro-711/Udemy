@@ -1,0 +1,32 @@
+// to add a plugin
+apply plugin: 'java'
+
+// Adds many tasks into our project
+// build
+// clean 
+// javadoc
+
+// Supports a standard layout
+// src/main/java
+// src/main/resources
+// src/test/java/
+// src/test/resources
+
+// if you wish you can use your own conventions
+
+// we can apply versions within gradle
+// this will affect the jar name and other stuff etc
+version = '1.0.SNAPSHOT'
+
+// Java Tasks
+// checkout this url - https://docs.gradle.org/current/userguide/java_plugin.html
+
+// compileJava - compiles the java
+// processResources - processesResources
+// classes - ties the two previous ones together
+// jar - creates a jar file for me
+// assemble - creates all the jar files within the project
+//		- it is a lifecycle task
+
+
+

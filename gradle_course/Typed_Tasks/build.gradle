@@ -1,0 +1,13 @@
+// What built-in Task Types are there
+
+// https://docs.gradle.org/current/dsl/
+// that lists all of the available Typed Tasks
+
+// The copy task
+
+	// if we didn't have typed tasks we would have to spe
+task copyImages (type: Copy) {
+	from 'src'
+	into 'dest'
+
+}

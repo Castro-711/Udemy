@@ -1,0 +1,31 @@
+// Repositories - Maven Remote
+
+repositories{
+	mavenCentral()
+
+	// can also use mavenLocal
+	// maven {
+	// url "http://repo.mycompany.com/maven2" 
+	//  }
+}
+
+repositories{
+	jcenter() // https
+
+	// if you prefer to use http you can specify accordingly
+	// url "http://repo.mycompany.com/maven2"
+}
+
+// we can specify multiple repos too, 
+// gradle will resolve these in order
+
+// can also use Ivy if need to for repo
+repositories{
+	ivy{ 
+		url "http://repo.mycompany.com/maven2"
+	}
+
+	ivy{
+		url "http://repo.mycompany.com/repo"
+	}
+}

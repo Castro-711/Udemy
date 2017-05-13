@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pluralsight.security.TestHashRunAndDigestMethod" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-05-13T15:48:48" hostname="C02SG344G8WM.workdayinternal.com" time="0.02">
+  <properties/>
+  <testcase name="testDigestArrayGreaterThanBaseSize" classname="com.pluralsight.security.TestHashRunAndDigestMethod" time="0.013"/>
+  <testcase name="testDigestArrayLessThanBaseSize" classname="com.pluralsight.security.TestHashRunAndDigestMethod" time="0.0"/>
+  <testcase name="testDigestArrayEqualsBaseSize" classname="com.pluralsight.security.TestHashRunAndDigestMethod" time="0.001"/>
+  <testcase name="testRun" classname="com.pluralsight.security.TestHashRunAndDigestMethod" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

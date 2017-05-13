@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'application' // helps run applicaitions.
+
+// we want to configure gradle to bulid our project to specification
+// to do this we use sourceSets
+
+sourceSets{
+	main{
+		java{
+			srcDir 'src'
+		}
+	}
+	test{
+		java{
+			srcDir 'test/src'
+		}
+	}
+}
+
+task wrapper (type: Wrapper)
+
+// at first we had compile errors as gradle coud not find
+// the jar for logger and others
+
+// in gradle we can specify dependencies in many ways 
+// one is to specify the path to it within the project
+
+dependencies{
+	compile files ('lib/log4j-1.2.8.jar', 'lib/junit-3.8.1.jar')
+}
+
+// :testClasses - compiles test classes
+// :test - actually runs the tests
+
+// passing arguments to the command line can be quite clunky
+// we need to do this
+run{
+	// as it is for the run task
+	if(project.hasProperty('args')){
+		args project.args.split('\\s')
+	}
+}
+// command to run with args is:
+// 		- gradle run -Pargs="-f build.gradle -d build.hash"
+
+// need to add name of main class we will use to run the application
+mainClassName = 'com.pluralsight.security.Hash'

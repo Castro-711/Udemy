@@ -1,0 +1,43 @@
+// Project has dependencies
+
+// Where do they come from?
+
+// - Other projects
+// - External libraries
+// - Internal libraries
+
+// We need a way of accessing these things.!
+
+
+// Dependencies can be satisfied from:
+
+// - Other projects
+// - File system
+// - Maven repo's
+// - Ivy repo's  -> deprecating support for this
+
+
+// Can have many configurations:
+
+// these define when dependencies are used
+// - e.g. only want to use Junit when testing etc
+
+// Java plugin introduces:
+// - compile 
+// - runtime
+// - testCompile
+// - testRuntime
+
+// anything defined as a compile dependency 
+// will also be included as a runtime dependency!
+
+
+// Transisitve Dependencies 
+
+// Some dependencies will depndend on other libraries
+// 	- These are transitive dependencies
+
+
+// We can list dependencies for a given project
+// or within the project for a given configuration.
+
