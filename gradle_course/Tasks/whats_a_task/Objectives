@@ -1,0 +1,15 @@
+// Objectives
+
+// Taks Domain Specific Language 
+// Task Lifecycle
+// Gradle Properties
+
+
+// What is a Task?
+
+// it is code that gradle will execute for us
+// Has a lifecycle
+// Has properties
+// Has 'actions' -> code that will execute
+// 		contains first action and last action
+// Has dependencies

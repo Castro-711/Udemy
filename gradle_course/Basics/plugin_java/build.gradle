@@ -1,0 +1,14 @@
+// this lets me build a java application
+
+// it follows confvention with the dir structiure
+// go to terminal and run gradle tasks 
+// returns all the tasks for that gradle file
+
+apply plugin: 'java'
+
+
+// recommended way to install gradle when you have a project
+// this will download the version if not already present
+task wrapper(type: Wrapper){
+	gradleVersion = '2.6'
+}

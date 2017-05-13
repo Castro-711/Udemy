@@ -1,0 +1,22 @@
+// there are a number of different phases in a gradle build
+
+// 1.
+// Initializaition Phase:
+// 		Used to configure multi project builds
+
+
+// 2. 
+// Configuration Phase
+// Executes code in the task that's not the action
+task myTask{
+	description "This executes in configuration phase"
+}
+
+
+// 3. 
+// Execution Phase
+// Execute the task actions
+// doFirst
+// doLast
+
+

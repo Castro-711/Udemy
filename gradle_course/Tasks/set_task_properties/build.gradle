@@ -1,0 +1,34 @@
+// this is a local variable
+def projectVersion = "2.0"
+
+// another way is to use extended properties
+// these are more like global variables and can 
+// be used across many different project / build files etc
+project.ext.latestVersion = '7.0'
+// as you can see both single '' and double "" quotes can be used
+
+// like mentioned before gradle and groovy look for project 
+// by default and so you do not have to specify the keyword
+// like java.lang
+ext.nextVersion = "7.13"
+
+
+project.task("Task1")
+
+task("Task2")
+
+task "Task3"
+
+task Task4
+
+Task4.description = "Task 4 description"
+
+Task4.doLast { println "This is task 4" }
+
+Task4.doLast { println "We are running - $projectVersion" }
+
+Task4.doLast { println "But the lastest version is - $latestVersion" }
+
+Task4.doLast { println "The next release will be version - $project.ext.nextVersion" }
+// as you can see you can refer to the variable refer to the variable with its
+// fully qualified name or just its name

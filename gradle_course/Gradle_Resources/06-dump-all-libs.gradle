@@ -1,0 +1,41 @@
+allprojects {  
+  afterEvaluate {
+      task dump_all_libs {
+        ext.dest = "$buildDir/all-libs"
+
+        doLast {
+          configurations.all { conf ->
+            conf.dependencies.each { dep ->
+              project.copy {
+                into "$dest/${conf.name}"
+                from conf.fileCollection(dep)
+              }
+            }  
+          }
+        }
+      }
+
+      task extract_runtime_libs {
+        ext.dest = "$buildDir/all-libs"
+
+        doLast {
+          configurations.runtime { conf ->
+            conf.findAll{it.name.endsWith("jar")}.each { f ->
+              project.copy {
+                into "$dest/${conf.name}/${f.name}.dir/"
+                from project.zipTree(f)
+              }
+            }  
+          }
+        }
+      }
+
+      task print_deps {
+        doLast {
+          configurations.all { conf ->
+              println "conf->$conf.name " + conf.files
+          }
+        }
+      }
+  }
+}

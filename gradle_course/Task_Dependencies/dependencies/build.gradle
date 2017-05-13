@@ -1,0 +1,45 @@
+// Objectives
+
+// understand how tasks can be linked
+
+// Recap - what is a tasks
+// - has a lifecycle
+// - has properties
+// - has 'acions'
+// - has dpeendencies
+
+// Task Dependencies
+
+task TaskA { println "task A" }
+task TaskB { println "task B" }
+task TaskC { println "task C" }
+task TaskD { println "task D" }
+task TaskE { println "task E" }
+
+TaskA.dependsOn TaskB
+TaskA.dependsOn TaskD, TaskC
+// gradle has its on way to run through things
+// changing the layout of the depends on statement
+// does not affect the way they are handled by gradle
+// order is undefined
+
+// use the -q flag to just see your output
+// -q for quiet
+
+TaskC.dependsOn TaskE
+TaskD.dependsOn TaskE
+
+
+TaskA.dependsOn TaskE
+
+
+// you can declared dependsOn within the closure 
+task TaskG{
+	dependsOn TaskE
+	doLast{
+		println "task G"
+	}
+}
+
+TaskA.dependsOn TaskG
+

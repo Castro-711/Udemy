@@ -1,0 +1,14 @@
+// gradle is a DSL language and so 
+// we can write groovy code inline
+
+// build files contain:
+// tasks
+// dependencies 
+// plugins
+// but mostly tasks
+
+task hello{
+	doLast{
+		println "Hello, Gradle"
+	}
+}

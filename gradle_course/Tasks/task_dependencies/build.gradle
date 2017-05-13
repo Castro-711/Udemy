@@ -1,0 +1,61 @@
+// gradle knows project is top level object 
+project.task("Task1")
+
+// tasks can also be defined without the project keyword
+task("Task2")
+
+// it delegates every to project 
+
+// other ways to define a task
+task "Task3"
+
+// because of the power of groovy
+// we don't even need to use the quotes
+task Task4
+
+// can add a description to tasks
+Task4.description = "This is Task4"
+
+// pass this a groovy closure
+Task4.doLast { println "This is Task4" }
+
+// another way to pass clousres
+// this is to be deprecated in Gradle 5
+// Task3 << {println "This is Task3"}
+Task3.doLast { println "This is Task3" }
+
+// task Task5.doLast { println "This is Task5" }
+
+task Task5
+
+Task5.doLast { println "This is Task5" }
+
+// we can apend other closures to the doLast closure
+// this makes it very powerful
+Task5.doLast { println "Another closure" }
+
+
+// adding a closure at the task declaration
+task Task6 {
+	description "This is task 6"
+	doFirst{ 
+		println "Task 6 - First"
+	}
+
+	doLast{
+		println "Task6 - Last"
+	}
+}
+
+Task6.doFirst{
+	println "Another First"
+}
+
+Task6.dependsOn Task5
+// this will make Task6 doFirst methods run
+// after Task5 dolast
+
+Task5.dependsOn Task4
+// this will work like transistive relationsships
+// Task6 dpeneds on 5, but 5 depends on 4 
+// therfore task 4 will be run first
