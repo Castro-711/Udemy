@@ -1,0 +1,15 @@
+// Filtering
+
+// there may be occasions when we want to run a subset of our test
+// to do this we add a filter
+
+// to add a filter:
+test{
+	filter{
+		includeTestsMatching "com.foo.shouldCreateASession"
+		includeTestsMacthing "*shouldCreateASession"
+	}
+}
+
+// we can overide the filter at the command line 
+// 		gradle test --tests *shouldCreateASession

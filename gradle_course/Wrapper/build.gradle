@@ -1,0 +1,54 @@
+// What is a wrapper
+
+// don't forget to apply the plugin
+apply plugin: 'java'
+
+
+// Provides a specific version of Gradle to the project
+//	- Get consisten builds
+// 	- gradlew.bat on windows
+// 	- gradlew.sh on Unix
+
+
+// To set it up:
+// Standard wrapper tasks
+// to add our own
+task wrapper(type: Wrapper){
+	gradleVersion = '3.5'
+}
+
+// it caches the version files in .gradle/wrapper/dists
+// you can find the link it downlaods form within the 
+// gradle.properties in the projects gradle directory
+
+// this will mean running gradle wrapper will always use 
+// version 2.6 when your run a build with the wrapper
+
+// after running gradle wrapper
+// a new gradle dir will appear
+// this will 
+
+
+// one of the key things about using the wrapper is that 
+// any fellow developers don't even need to install gradle
+// once the run the file gradle will get the jar's etc
+
+// the dev just needs to checkout the wrapper and run it
+
+
+// Why build Server?
+
+// Continuous integration is very important
+// if not CI at least nightly builds
+
+// typeically you will have both
+// if not doing nightly builds then clean place to build
+// 		- sorts problem of 'works on my machine'
+
+// TEAM CITY 
+// a build; server from JetBrains
+// it allows you to use gradle
+
+// it is basically another Jenkins
+// you can add triggers etc
+// helps to automate build and tests

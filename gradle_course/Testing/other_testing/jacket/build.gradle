@@ -1,0 +1,116 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.2.0'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
+        classpath 'com.h2database:h2:1.4.187'
+    }
+}
+
+// here is a new way to add plugins since gradle 2.0
+plugins{
+  id 'org.unbroken-dome.test-sets' version '1.2.0'
+}
+// because this is a multiproject build we still need to apply 
+// the plugin to the specific projects
+// see below
+
+
+allprojects {
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'eclipse-wtp'
+  apply plugin: 'idea'
+
+  version = '0.1-SNAPSHOT'
+  
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    testCompile 'org.hamcrest:hamcrest-core:1.3'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testCompile 'org.mockito:mockito-core:1.9.+'
+    testCompile 'commons-logging:commons-logging:1.2'
+
+    compile 'commons-logging:commons-logging:1.2'
+
+  }
+}
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+project(':HibernateRepository') {
+    dependencies {
+      compile project(':Repository')
+    }
+}
+
+project(':JacketRepository') {
+    dependencies {
+      compile project(':HibernateRepository')
+    }
+}
+
+project(':JacketService') {
+    dependencies {
+      compile project(':JacketRepository')
+    }
+}
+
+project(':JacketWeb') {
+    dependencies {
+      compile project(':JacketService')
+    }
+}
+
+["JacketRepository","JacketService", "JacketWeb"].each { name ->
+  project(":$name") { 
+    // here is were plugin is being applied
+		apply plugin: 'org.unbroken-dome.test-sets' 
+		apply plugin: 'org.flywaydb.flyway'
+	
+    // we can override the directory name for our 
+    // integrations tests setup
+    testSets {
+      integrationTest { dirName = 'integration-test' }
+    }
+    
+    task migrateTest {	
+      group = "test"
+      description = "Run migration scripts for test"
+      doFirst {
+      	flyway {
+      	  url = 'jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false'
+      	  user = 'sa'
+      	  password = ''
+      	  schemas = ['jacket']
+      	  locations = ["filesystem:${rootProject.projectDir}/migrations/common", "filesystem:${rootProject.projectDir}/migrations/h2"]
+      	  sqlMigrationPrefix = ""
+      	  baselineOnMigrate = true
+      	  outOfOrder = true
+      	}
+      }
+    }
+		
+    migrateTest.finalizedBy flywayMigrate  
+
+    // this is changing the default file directory for the repositories
+    tasks.withType(Test) {
+      reports.html.destination = file("${reporting.baseDir}/${it.name}")
+    }
+    
+    integrationTest.dependsOn(migrateTest)
+
+   }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}

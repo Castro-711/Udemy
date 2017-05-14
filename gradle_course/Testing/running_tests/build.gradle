@@ -1,0 +1,15 @@
+// Integral to the java plugin
+
+// Defines
+// 		- a source set
+//		- task to compile the test
+// 		- task to run the tests
+// 		- built into the build command
+
+
+// Source Set
+
+//		-  Looks for unit tests in src/test/java
+//		-  Outputs to build/classes/test
+//		-  Reporst to bulid/reports/test
+

@@ -1,0 +1,22 @@
+// What about other tests
+
+// - Integration tests for example?
+// - Can use graldet-testsets-plugin
+// - Can find it here:
+// 		hhtps://github.com/unbroken-dome//gradle-testsets-plugin
+
+// gradle-testsets-plugin
+// 	- add a testSet
+// 	- set other configurations parameters (dependsON etc..)
+// 	- set output reports directory 
+// 	- (so no conflicts between unit test and integration tests output)
+
+
+// add the integration to root build.gradle file
+// as other projects may need to use the test
+
+// allpojects sections
+// this means apply everything within this closure to all projects
+
+// within our build files we can write groovy code
+
